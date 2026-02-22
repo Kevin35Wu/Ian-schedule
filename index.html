@@ -46,7 +46,7 @@
             flex-shrink: 0;
             padding: var(--sp-md) var(--sp-md) 5rem var(--sp-md);
             box-sizing: border-box;
-            height: calc(100dvh - 80px);
+            height: calc(var(--vh, 1vh) * 100 - 80px);
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
@@ -464,6 +464,13 @@
     const nav = document.getElementById('floatingNav');
     const swipeContainer = document.getElementById('swipeContainer');
     let currentWeek = 0;
+
+    // iOS standalone vh fix
+    function setVh() {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
 
     window.onload = () => { renderAllMoodSelectors(); loadMoods(); initSwipe(); };
 
