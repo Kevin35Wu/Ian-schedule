@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anatomy-v4';
+const CACHE_NAME = 'anatomy-v5';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -13,5 +13,10 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(fetch(e.request));
+  if (e.request.method !== 'GET') return;
+
+  e.respondWith(
+    fetch(e.request, { cache: 'no-store' })
+      .catch(() => caches.match(e.request))
+  );
 });
