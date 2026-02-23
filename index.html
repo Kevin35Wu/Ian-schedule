@@ -618,13 +618,5 @@
         });
     }
 </script>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/anatomy-schedule/sw.js', {scope: '/anatomy-schedule/'});
-        });
-      }
-    </script>
 </body>
 </html>
